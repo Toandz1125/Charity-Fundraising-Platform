@@ -1,0 +1,45 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Donate - CharityHeart</title>
+        <link rel="stylesheet" href="/project/src/css/styles.css">
+    </head>
+    <body>
+        <div class="donation-container">
+            <div class="donation-box">
+            <form id="donation-form" class="donation-form">
+                <h1>Make a Donation</h1>
+                <div class="form-group-2">
+                    <label for="amount">Amount ($)</label>
+                    <input type="number" id="amount" name="amount" min="1" step="0.01" required>
+                </div>
+                <div class="form-group-2">
+                    <label for="cause">Cause</label>
+                    <select id="cause" name="cause" required>
+                        <option value="">Select a cause</option>
+                        <option value="education">Education</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="environment">Environment</option>
+                        <option value="hunger">Hunger Relief</option>
+                    </select>
+                </div>
+                <div class="form-group-2">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" name="card-number" required>
+                </div>
+                <div class="form-group-2">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Donate</button>
+                <div id="donation-message" class="message"></div>
+            </form>
+            <section id="causes" class="causes-section">
+                <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+            </section>
+        </div>
+        <script src="../js/donation.js" type="module"></script>
+    </body>
+    </html>

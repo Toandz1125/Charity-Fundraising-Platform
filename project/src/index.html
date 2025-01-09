@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CharityHeart - Make a Difference</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">CharityHeart</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#causes">Causes</a></li>
+                <li><a href="auth/login.html" class="btn-login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Make a Difference Today</h1>
+                <p>Join our community of givers and help create positive change in the world.</p>
+                <br>
+                <br>
+                <div class="cta-buttons">
+                    <a href="auth/register.html" class="btn btn-primary-index">Get Started</a>
+                    <a href="#causes" class="btn btn-secondary">View Causes</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <br>
+            <br>
+            <h2>Our Mission</h2>
+            <p>We connect generous donors with meaningful causes, ensuring transparency and impact in every contribution.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>1000+</h3>
+                    <p>Donors</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Active Causes</p>
+                </div>
+                <div class="stat-item">
+                    <h3>$500K+</h3>
+                    <p>Raised</p>
+                </div>
+            </div>
+            <br>
+        </section>
+
+        <section id="causes" class="causes-section">
+            <br>
+            <br>
+            <h2>Current Causes</h2>
+            <div class="causes-grid" id="causes-container">
+                <!-- Causes will be loaded dynamically -->
+            </div>
+            <div id="grand-total"></div>
+            <br>
+            <br>
+            <br>
+        </section>
+        
+        <section id="causes" class="causes-section">
+            <h2>List Donations</h2>
+                <div id="filter-buttons">
+                    <button id="all-donations" class="filter-btn">All</button>
+                    <button id="education" class="filter-btn">Education</button>
+                    <button id="healthcare" class="filter-btn">Healthcare</button>
+                    <button id="environment" class="filter-btn">Environment</button>
+                    <button id="hunger" class="filter-btn">Hunger</button>
+                </div>
+        </section>
+        <div id="table-container">
+            <table id="donation-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Amount ($)</th>
+                        <th>Cause</th>
+                        <th>User Name</th>
+                        <th>User Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Donation history will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <br>
+    <br>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CharityHeart</h3>
+                <p>Making the world better, one donation at a time.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: naithetoan2005@gmail.com</p>
+                <p>Phone: (+84) 869 744 213</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CharityHeart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const causeTotalsDiv = document.getElementById('causes-container');
+            const grandTotalDiv = document.getElementById('grand-total');
+        
+            try {
+                const response = await fetch('http://localhost:5000/api/donation_stats');
+                const data = await response.json();
+        
+                if (data.success) {
+                    const stats = data.stats;
+                    let totalsHtml = '<div class="stats-grid">';
+                    let grandTotal = 0;
+        
+                    for (const cause in stats) {
+                        const amount = stats[cause];
+                        grandTotal += amount;
+                        totalsHtml += `
+                            <div class="stat-card">
+                                <h3>${cause.charAt(0).toUpperCase() + cause.slice(1)}</h3>
+                                <p class="amount">$${amount.toFixed(2)}</p>
+                            </div>
+                        `;
+                    }
+                    totalsHtml += '</div>';
+                    causeTotalsDiv.innerHTML = totalsHtml;
+                    
+                    // Display grand total
+                    grandTotalDiv.innerHTML = `
+                        <div class="grand-total">
+                            <h3>Total Donations</h3>
+                            <p class="amount">$${grandTotal.toFixed(2)}</p>
+                        </div>
+                    `;
+                } else {
+                    causeTotalsDiv.innerHTML = '<p class="error">Failed to load donation statistics.</p>';
+                }
+            } catch (error) {
+                causeTotalsDiv.innerHTML = '<p class="error">Error loading donation statistics. Please try again later.</p>';
+                console.error('Error:', error);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const donationTableBody = document.getElementById('donation-table').querySelector('tbody');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+
+            async function fetchDonations(cause = '') {
+                try {
+                    const response = await fetch(`http://localhost:5000/api/all_donations`);
+                    const data = await response.json();
+
+                    if (data.success) {
+                        const donations = data.donations;
+
+                        // Sắp xếp donations theo thời gian từ mới nhất đến cũ nhất
+                        donations.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                        // Lọc donations theo cause nếu có
+                        const filteredDonations = cause ? donations.filter(donation => donation.cause === cause) : donations;
+
+                        // Hiển thị donations
+                        displayDonations(filteredDonations);
+                    } else {
+                        donationTableBody.innerHTML = '<tr><td colspan="5" class="error">Không thể tải donations.</td></tr>';
+                    }
+                } catch (error) {
+                    donationTableBody.innerHTML = '<tr><td colspan="5" class="error">Lỗi khi tải donations. Vui lòng thử lại sau.</td></tr>';
+                    console.error('Error:', error);
+                }
+            }
+
+            function displayDonations(donations) {
+                donationTableBody.innerHTML = ''; // Xóa nội dung cũ
+                donations.forEach(donation => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${new Date(donation.date).toLocaleString()}</td>
+                        <td>${donation.amount.toFixed(2)}</td>
+                        <td>${donation.cause}</td>
+                        <td>${donation.user_name}</td>
+                        <td>${donation.user_email}</td>
+                    `;
+                    donationTableBody.appendChild(row);
+                });
+            }
+
+            // Lấy tất cả donations khi tải trang
+            fetchDonations();
+
+            // Thêm sự kiện cho các nút lọc
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const cause = button.id === 'all-donations' ? '' : button.id;
+                    fetchDonations(cause);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

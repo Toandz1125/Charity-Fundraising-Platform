@@ -1,0 +1,382 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #2196F3;
+    --text-color: #333;
+    --bg-color: #f5f5f5;
+    --white: #ffffff;
+    --error-color: #f44336;
+    --success-color: #4CAF50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* Hero Section */
+.hero {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('../assets/hero-bg.jpg') center/cover;
+    color: var(--white);
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-index {
+    background-color: var(--primary-color);
+    border: 2px solid var(--white);
+    color: var(--white);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+}
+
+/* Auth Forms */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+
+
+.auth-box {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+
+.form-group input {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* donation Forms */
+.donation-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+.donation-container h1 {
+    text-align: center; /* Center the text */
+    color: var(--primary-color); /* Change text color to green */
+}
+
+.donation-box {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+}
+.donation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group-2 {
+    margin-bottom: 1.5rem; /* Khoảng cách giữa các trường */
+}
+
+.form-group-2 label {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.form-group-2 input,
+.form-group-2 select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%; /* Đảm bảo các trường chiếm toàn bộ chiều rộng */
+    transition: border-color 0.3s; /* Hiệu ứng chuyển tiếp cho border */
+}
+
+.form-group-2 input:focus,
+.form-group-2 select:focus {
+    border-color: var(--primary-color); /* Đổi màu border khi focus */
+    outline: none; /* Bỏ outline mặc định */
+}
+/* Căn giữa theo chiều dọc cho trang donation */
+body, html {
+    height: 100%; /* Đảm bảo chiều cao 100% cho body và html */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp cho background */
+}
+
+.message {
+    padding: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.message.error {
+    background-color: var(--error-color);
+    color: var(--white);
+}
+
+.message.success {
+    background-color: var(--success-color);
+    color: var(--white);
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: var(--white);
+    padding: 3rem 5%;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.table-container {
+    width: 600px; /* Set fixed width for the table */
+    height: 400px; /* Set fixed height for the table container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #f4f4f4;
+    z-index: 1;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f9f9f9;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.donation-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.donation-table th, .donation-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.donation-table th {
+    background-color: #f2f2f2;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+.error {
+    color: red;
+    text-align: center;
+}
+#filter-buttons {
+    margin-bottom: 20px;
+}
+.filter-btn {
+    margin-right: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+#table-container {
+    max-height: 400px; /* Chiều cao tối đa của bảng */
+    overflow-y: auto; /* Cho phép cuộn dọc */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.about-section {
+    text-align: center; /* Căn giữa nội dung */
+}
+
+.stats {
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: space-around; /* Căn đều các phần tử */
+    margin-top: 20px; /* Khoảng cách phía trên */
+}
+
+.stat-item {
+    flex: 1; /* Mỗi phần tử chiếm 1 phần bằng nhau */
+    padding: 10px; /* Khoảng cách bên trong */
+}
+
+.causes-section {
+    text-align: center; /* Căn giữa nội dung */
+}
+
+.stats-grid {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các thẻ căn đều trên nhiều hàng nếu cần */
+    justify-content: space-around; /* Căn đều các thẻ trong hàng */
+    margin: 20px 0; /* Khoảng cách trên và dưới */
+}
+
+.stat-card {
+    background-color: #f9f9f9; /* Màu nền cho thẻ */
+    border: 1px solid #ddd; /* Đường viền */
+    border-radius: 8px; /* Bo góc */
+    padding: 20px; /* Khoảng cách bên trong */
+    margin: 10px; /* Khoảng cách giữa các thẻ */
+    text-align: center; /* Căn giữa nội dung */
+    flex: 1 1 200px; /* Thẻ sẽ có chiều rộng tối thiểu là 200px và có thể mở rộng */
+}
+/* Ẩn thông báo mật khẩu của Google */
+div[role="alert"] {
+    display: none !important;
+}
+
+/* Hoặc có thể dùng selector cụ thể hơn */
+.password-alert-container,
+div[aria-label*="mật khẩu"],
+div[class*="password-alert"] {
+    display: none !important;
+}
+
+/* Nếu muốn ẩn toàn bộ overlay */
+.alert-overlay {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
