@@ -7,9 +7,10 @@ import datetime
 import os
 from functools import wraps
 from blockchain import Blockchain
+from zoneinfo import ZoneInfo
 
 app = Flask(__name__, static_folder='src', static_url_path='/')
-
+vietnam_time = datetime.now(ZoneInfo("Asia/Ho_Chi_Minh"))
 # Route để phục vụ trang index.html
 @app.route('/')
 def serve_index():
@@ -92,7 +93,7 @@ def register():
         'name': name,
         'email': email,
         'password': hashed_password,
-        'created_at': datetime.datetime.now().isoformat()
+        'created_at': vietnam_time
     }
     
     users.append(new_user)
@@ -120,7 +121,7 @@ def login():
 
     token = jwt.encode({
         'email': user['email'],
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1)
+        'exp': vietnam_time + datetime.timedelta(days=1)
     }, app.config['SECRET_KEY'])
 
     return jsonify({
@@ -181,7 +182,7 @@ def donate(current_user):
         'amount': amount,
         'cause': cause,
         'card_number': encrypted_card_number,
-        'date': datetime.datetime.now().isoformat(),
+        'date': vietnam_time,
         'transaction_id': transaction['transaction_id']
     }
 
