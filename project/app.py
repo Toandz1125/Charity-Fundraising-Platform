@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, send_from_directory, jsonify
 from flask_cors import CORS
 import json
 import hashlib
@@ -7,6 +7,18 @@ import datetime
 import os
 from functools import wraps
 from blockchain import Blockchain
+
+app = Flask(__name__, static_folder='src', static_url_path='/')
+
+# Route để phục vụ trang index.html
+@app.route('/')
+def serve_index():
+    return send_from_directory(app.static_folder, 'index.html')
+
+# Route để phục vụ các file tĩnh (CSS, JS, v.v.)
+@app.route('/<path:path>')
+def serve_static_files(path):
+    return send_from_directory(app.static_folder, path)
 
 app = Flask(__name__)
 CORS(app)
