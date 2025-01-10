@@ -72,7 +72,7 @@ def token_required(f):
     return decorated
 
 # Routes
-@app.route('/api/register', methods=['POST'])
+@app.route('auth/api/register', methods=['POST'])
 def register():
     data = request.get_json()
     name = data.get('name')
@@ -100,7 +100,7 @@ def register():
     
     return jsonify({'success': True, 'message': 'Registration successful'})
 
-@app.route('/api/login', methods=['POST'])
+@app.route('auth/api/login', methods=['POST'])
 def login():
     data = request.get_json()
     email = data.get('email')
