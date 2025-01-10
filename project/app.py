@@ -231,4 +231,5 @@ def get_all_donations():
     donations = read_json_file(DONATIONS_FILE)
     return jsonify({'success': True, 'donations': donations}), 200
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
