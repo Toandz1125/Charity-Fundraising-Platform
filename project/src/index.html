@@ -164,7 +164,7 @@
 
             async function fetchDonations(cause = '') {
                 try {
-                    const response = await fetch(`auth/api/all_donations`);
+                    const response = await fetch(`/auth/api/all_donations`);
                     const data = await response.json();
 
                     if (data.success) {
