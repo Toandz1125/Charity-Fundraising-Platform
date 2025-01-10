@@ -1,1 +1,1 @@
-export const API_URL = 'https://donations-8.onrender.com';
+export const API_URL = "https://donations-8.onrender.com";
