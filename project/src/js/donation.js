@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 message.className = 'message success';
                 form.reset();
                 setTimeout(() => {
-                    window.location.href = '/project/src/auth/dashboard.html';
+                    window.location.href = 'dashboard.html';
                 }, 1500);
             } else {
                 throw new Error(data.message || 'Donation failed');
