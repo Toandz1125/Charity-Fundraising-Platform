@@ -121,7 +121,7 @@
             const grandTotalDiv = document.getElementById('grand-total');
         
             try {
-                const response = await fetch('http://localhost:5000/api/donation_stats');
+                const response = await fetch('auth/api/donation_stats');
                 const data = await response.json();
         
                 if (data.success) {
@@ -164,7 +164,7 @@
 
             async function fetchDonations(cause = '') {
                 try {
-                    const response = await fetch(`http://localhost:5000/api/all_donations`);
+                    const response = await fetch(`auth/api/all_donations`);
                     const data = await response.json();
 
                     if (data.success) {
