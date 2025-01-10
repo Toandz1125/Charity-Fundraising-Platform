@@ -72,7 +72,7 @@ def token_required(f):
     return decorated
 
 # Routes
-@app.route('auth/api/register', methods=['POST'])
+@app.route('/auth/api/register', methods=['POST'])
 def register():
     data = request.get_json()
     name = data.get('name')
@@ -100,7 +100,7 @@ def register():
     
     return jsonify({'success': True, 'message': 'Registration successful'})
 
-@app.route('auth/api/login', methods=['POST'])
+@app.route('/auth/api/login', methods=['POST'])
 def login():
     data = request.get_json()
     email = data.get('email')
@@ -132,7 +132,7 @@ def login():
         }
     })
 
-@app.route('/api/donate', methods=['POST'])
+@app.route('/auth/api/donate', methods=['POST'])
 @token_required
 def donate(current_user):
     data = request.get_json()
@@ -201,12 +201,12 @@ def donate(current_user):
         'donation_details': new_donation  # Include donation details for the dashboard
     })
 
-@app.route('/api/user', methods=['GET'])
+@app.route('/auth/api/user', methods=['GET'])
 @token_required
 def get_user_info(current_user):
     return jsonify({'success': True, 'user': current_user}), 200
 
-@app.route('/api/donations', methods=['GET'])
+@app.route('/auth/api/donations', methods=['GET'])
 @token_required
 def get_donations(current_user):
     if not os.path.exists('data/donations.json'):
@@ -220,7 +220,7 @@ def get_donations(current_user):
     
     return jsonify({'success': True, 'donations': user_donations}), 200
 
-@app.route('/api/donation_stats', methods=['GET'])
+@app.route('/auth/api/donation_stats', methods=['GET'])
 def get_donation_stats():
     donations = read_json_file(DONATIONS_FILE)
     stats = {}
@@ -237,7 +237,7 @@ def get_donation_stats():
 
     return jsonify({'success': True, 'stats': stats}), 200
 
-@app.route('/api/all_donations', methods=['GET'])
+@app.route('/auth/api/all_donations', methods=['GET'])
 def get_all_donations():
     donations = read_json_file(DONATIONS_FILE)
     return jsonify({'success': True, 'donations': donations}), 200
