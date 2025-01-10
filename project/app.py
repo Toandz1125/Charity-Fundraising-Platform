@@ -20,7 +20,6 @@ def serve_index():
 def serve_static_files(path):
     return send_from_directory(app.static_folder, path)
 
-app = Flask(__name__)
 CORS(app)
 
 # Instantiate blockchain
