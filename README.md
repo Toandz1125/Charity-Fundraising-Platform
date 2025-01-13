@@ -1,6 +1,7 @@
 # CharityHeart - Charity Fundraising Platform
 
 A web-based platform for charitable donations with secure authentication and donation management.
+Using blockchain technology and encryptions
 
 ## Features
 
