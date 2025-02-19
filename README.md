@@ -47,7 +47,7 @@ Using blockchain technology and encryptions
 
 ## Security
 
-- Transaction id are hashed using SHA-256
+- Transaction id are hashed using SHA-256 and follow blockchain technology
 - Passwords are hashed using ECC
 - JWT-based authentication
 - CORS enabled for API access
