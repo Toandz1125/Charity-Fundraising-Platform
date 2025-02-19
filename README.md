@@ -6,7 +6,7 @@ Using blockchain technology and encryptions
 ## Features
 
 - User registration and authentication
-- Secure donation processing
+- Secure donation processing follow blockchain technology
 - Cause browsing and management
 - Responsive design
 - JSON-based data storage
@@ -47,7 +47,8 @@ Using blockchain technology and encryptions
 
 ## Security
 
-- Passwords are hashed using SHA-256
+- Transaction id are hashed using SHA-256
+- Passwords are hashed using ECC
 - JWT-based authentication
 - CORS enabled for API access
 - Input validation on both frontend and backend
